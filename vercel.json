@@ -36,6 +36,8 @@
     }
   ],
   "env": {
-    "NODE_ENV": "production"
-  }
+    "NODE_ENV": "production",
+    "NODE_VERSION": "18.x"
+  },
+  "regions": ["iad1"]
 }
