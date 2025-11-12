@@ -3,10 +3,7 @@
   "builds": [
     {
       "src": "server.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["**/*.js", "**/*.json", "**/*.mjs"]
-      }
+      "use": "@vercel/node"
     },
     {
       "src": "package.json",
@@ -39,13 +36,6 @@
     }
   ],
   "env": {
-    "NODE_ENV": "production",
-    "NODE_VERSION": "18.x"
-  },
-  "regions": ["iad1"],
-  "functions": {
-    "server.js": {
-      "includeFiles": "**/*.{js,json,mjs}"
-    }
+    "NODE_ENV": "production"
   }
 }

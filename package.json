@@ -3,15 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "engines": {
-    "node": ">=14.0.0"
-  },
   "scripts": {
-    "dev": "vite",
+    "client": "vite",
+    "server": "node server.js",
+    "dev": "npm-run-all --parallel client server",
     "build": "vite build",
+    "lint": "eslint .",
     "preview": "vite preview",
-    "start": "node server.js",
-    "vercel-build": "npm run build"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -32,7 +31,7 @@
     "@tailwindcss/postcss": "^4.1.17",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "@vitejs/plugin-react": "^5.1.1",
+    "@vitejs/plugin-react": "^5.1.0",
     "autoprefixer": "^10.4.22",
     "buffer": "^6.0.3",
     "eslint": "^9.39.1",

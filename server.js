@@ -11,7 +11,8 @@ const corsOptions = {
   origin: [
     'http://localhost:5173',
     'http://localhost:3000',
-    'https://*.vercel.app'
+    'https://your-vercel-app.vercel.app', // Replace with your Vercel app URL
+    'https://*.vercel.app' // Allow all Vercel deployments
   ],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -21,11 +22,6 @@ const corsOptions = {
 // Apply middleware
 app.use(cors(corsOptions));
 app.use(express.json());
-
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.status(200).json({ status: 'ok' });
-});
 
 // Get API key from environment variables
 const API_KEY = process.env.VITE_NEWSAPI_KEY || process.env.NEWSAPI_KEY;
@@ -39,10 +35,23 @@ if (!API_KEY) {
   }
 }
 
+// Log which API key is being used (first few characters for security)
 console.log('✅ Using NewsAPI key starting with:', API_KEY ? `${API_KEY.substring(0, 5)}...` : 'No API key found!');
 
 const API_BASE = 'https://newsapi.org';
 const API_URL = `${API_BASE}/v2`;
+
+// For local development
+if (process.env.VERCEL !== '1') {
+  const PORT = process.env.PORT || 3001;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+// Middleware
+app.use(cors(corsOptions));
+app.use(express.json());
 
 // NewsAPI endpoint handler - handle all /api/news routes
 app.use('/api/news', async (req, res) => {
