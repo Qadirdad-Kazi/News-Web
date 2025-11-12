@@ -45,7 +45,7 @@
   "regions": ["iad1"],
   "functions": {
     "server.js": {
-      "includeFiles": ["**/*.js", "**/*.json", "**/*.mjs"]
+      "includeFiles": "**/*.{js,json,mjs}"
     }
   }
 }
