@@ -41,16 +41,16 @@ console.log('✅ Using NewsAPI key starting with:', API_KEY ? `${API_KEY.substri
 const API_BASE = 'https://newsapi.org';
 const API_URL = `${API_BASE}/v2`;
 
-// For local development
+// Start the server for local development
 const PORT = process.env.PORT || 3001;
 if (process.env.VERCEL !== '1') {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
-} else {
-  // Export the Express API for Vercel Serverless Functions
-  module.exports = app;
 }
+
+// Export the Express API for Vercel Serverless Functions
+export default app;
 
 // Middleware
 app.use(cors(corsOptions));
